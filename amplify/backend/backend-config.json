@@ -1,0 +1,56 @@
+{
+  "auth": {
+    "fitnesschallengeaa5dcdf1": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false,
+      "frontendAuthConfig": {
+        "socialProviders": [],
+        "usernameAttributes": [
+          "EMAIL"
+        ],
+        "signupAttributes": [
+          "EMAIL"
+        ],
+        "passwordProtectionSettings": {
+          "passwordPolicyMinLength": 8,
+          "passwordPolicyCharacters": []
+        },
+        "mfaConfiguration": "OFF",
+        "mfaTypes": [
+          "SMS"
+        ],
+        "verificationMechanisms": [
+          "EMAIL"
+        ]
+      }
+    }
+  },
+  "api": {
+    "fitnesschallenge": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7,
+              "apiKeyExpirationDate": "2022-01-05T22:15:13.211Z",
+              "description": "My API Key"
+            }
+          },
+          "additionalAuthenticationProviders": [
+            {
+              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+              "userPoolConfig": {
+                "userPoolId": "authfitnesschallengeaa5dcdf1"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}
