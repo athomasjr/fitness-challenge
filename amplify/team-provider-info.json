@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "fitnesschallenged1f0310b": {}
+      },
+      "function": {
+        "fitnesschallengepostsignup": {
+          "deploymentBucketName": "amplify-fitnesschallenge-dev-73715-deployment",
+          "s3Key": "amplify-builds/fitnesschallengepostsignup-6e4149684676386c6b4a-build.zip"
+        }
       }
     }
   }
