@@ -1,19 +1,19 @@
 {
   "dev": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-fitnesschallenge-dev-161237-authRole",
-      "UnauthRoleArn": "arn:aws:iam::007103490885:role/amplify-fitnesschallenge-dev-161237-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::007103490885:role/amplify-fitnesschallenge-dev-161237-authRole",
+      "AuthRoleName": "amplify-fitnesschallenge-dev-73715-authRole",
+      "UnauthRoleArn": "arn:aws:iam::007103490885:role/amplify-fitnesschallenge-dev-73715-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::007103490885:role/amplify-fitnesschallenge-dev-73715-authRole",
       "Region": "us-east-1",
-      "DeploymentBucketName": "amplify-fitnesschallenge-dev-161237-deployment",
-      "UnauthRoleName": "amplify-fitnesschallenge-dev-161237-unauthRole",
-      "StackName": "amplify-fitnesschallenge-dev-161237",
-      "StackId": "arn:aws:cloudformation:us-east-1:007103490885:stack/amplify-fitnesschallenge-dev-161237/70889170-68f4-11ec-88a3-0ecdd980275d",
-      "AmplifyAppId": "d29wdqzjtx2633"
+      "DeploymentBucketName": "amplify-fitnesschallenge-dev-73715-deployment",
+      "UnauthRoleName": "amplify-fitnesschallenge-dev-73715-unauthRole",
+      "StackName": "amplify-fitnesschallenge-dev-73715",
+      "StackId": "arn:aws:cloudformation:us-east-1:007103490885:stack/amplify-fitnesschallenge-dev-73715/c6784490-6a3e-11ec-b474-0ef1b6f37941",
+      "AmplifyAppId": "d1e81grqoiw7qk"
     },
     "categories": {
       "auth": {
-        "fitnesschallengeaa5dcdf1": {}
+        "fitnesschallenged1f0310b": {}
       }
     }
   }
