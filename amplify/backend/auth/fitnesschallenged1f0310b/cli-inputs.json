@@ -1,10 +1,10 @@
 {
   "version": "1",
   "cognitoConfig": {
-    "identityPoolName": "fitnesschallengeaa5dcdf1_identitypool_aa5dcdf1",
+    "identityPoolName": "fitnesschallenged1f0310b_identitypool_d1f0310b",
     "allowUnauthenticatedIdentities": false,
-    "resourceNameTruncated": "fitnesaa5dcdf1",
-    "userPoolName": "fitnesschallengeaa5dcdf1_userpool_aa5dcdf1",
+    "resourceNameTruncated": "fitnesd1f0310b",
+    "userPoolName": "fitnesschallenged1f0310b_userpool_d1f0310b",
     "autoVerifiedAttributes": [
       "email"
     ],
@@ -31,10 +31,10 @@
     "userpoolClientReadAttributes": [
       "email"
     ],
-    "userpoolClientLambdaRole": "fitnesaa5dcdf1_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "fitnesd1f0310b_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "aa5dcdf1",
-    "resourceName": "fitnesschallengeaa5dcdf1",
+    "sharedId": "d1f0310b",
+    "resourceName": "fitnesschallenged1f0310b",
     "authSelections": "identityPoolAndUserPool",
     "useDefault": "default",
     "usernameAttributes": [
