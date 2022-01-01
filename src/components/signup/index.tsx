@@ -1,10 +1,10 @@
 import { yupResolver } from '@hookform/resolvers/yup'
-import { Button, Grid, TextField } from '@mui/material'
+import { Button, Grid, Typography } from '@mui/material'
 import { Auth } from 'aws-amplify'
+import { useAuthContext } from 'context/auth'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import MyTextField from '../common/my-textfield'
-
 interface SignupFormInputs {
 	firstName: string
 	lastName: string
@@ -46,17 +46,16 @@ const schema = yup.object().shape({
 })
 
 export default function Signup() {
+	const auth = useAuthContext()
 	const methods = useForm<SignupFormInputs>({
 		resolver: yupResolver(schema),
 	})
 
 	const {
 		handleSubmit,
+		reset,
 		formState: { errors, isSubmitting },
 	} = methods
-
-	console.log(errors)
-	console.log(isSubmitting)
 
 	const submitHandler: SubmitHandler<SignupFormInputs> = async (
 		{ firstName, lastName, email, password },
@@ -64,7 +63,7 @@ export default function Signup() {
 	) => {
 		e?.preventDefault()
 		try {
-			await Auth.signUp({
+			const res = await Auth.signUp({
 				username: email,
 				password,
 				attributes: {
@@ -73,6 +72,12 @@ export default function Signup() {
 					'custom:lastName': lastName,
 				},
 			})
+
+			if (res.userSub) {
+				auth.login(res.user)
+
+				reset()
+			}
 		} catch (error) {
 			console.error(error)
 		}
@@ -88,7 +93,9 @@ export default function Signup() {
 					justifyContent='center'
 					rowGap={{ xs: '8px', md: '16px' }}
 				>
-					<h1>Signup</h1>
+					<Typography variant='h2' component='h1'>
+						Signup
+					</Typography>
 					<MyTextField
 						name='firstName'
 						label='First Name'
@@ -136,7 +143,7 @@ export default function Signup() {
 						color='primary'
 						style={{ alignSelf: 'flex-start' }}
 					>
-						submit
+						Signup
 					</Button>
 				</Grid>
 			</form>
