@@ -7,13 +7,7 @@ export default function Auth() {
 	const [isSignup, setIsSignup] = useState(true)
 
 	return (
-		<Grid
-			container
-			direction='column'
-			alignItems='center'
-			justifyContent='center'
-			style={{ minHeight: '100vh' }}
-		>
+		<Grid container direction='column' alignItems='center'>
 			<Grid style={{ width: '40%' }}>
 				{isSignup ? <Signup /> : <Login />}
 				<Divider
