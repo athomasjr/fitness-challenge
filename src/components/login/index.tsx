@@ -1,11 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Button, Grid, Typography } from '@mui/material'
-import { Auth } from 'aws-amplify'
+import { API, Auth, graphqlOperation } from 'aws-amplify'
 import { useAuthContext } from 'context/auth'
+import { getUser } from 'graphql/queries'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 import * as yup from 'yup'
+import { GetUserQuery, User } from '../../types/API'
 import MyTextField from '../common/my-textfield'
-
 interface LoginFormInputs {
 	email: string
 	password: string
@@ -22,6 +24,7 @@ const schema = yup.object().shape({
 
 export default function Login() {
 	const auth = useAuthContext()
+	const navigate = useNavigate()
 
 	const methods = useForm<LoginFormInputs>({
 		resolver: yupResolver(schema),
@@ -40,8 +43,15 @@ export default function Login() {
 		e?.preventDefault()
 		try {
 			const userConfig = await Auth.signIn(email, password)
-			if (userConfig.signInUserSession) {
-				auth.login(userConfig)
+			if (userConfig) {
+				const res = (await API.graphql(
+					graphqlOperation(getUser, { id: userConfig.attributes.sub })
+				)) as { data: GetUserQuery }
+
+				const user = res.data.getUser as User
+
+				auth.setUser(user)
+				navigate('/profile')
 				reset()
 			}
 		} catch (error) {

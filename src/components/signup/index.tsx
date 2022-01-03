@@ -1,10 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup'
 import { Button, Grid, Typography } from '@mui/material'
-import { Auth } from 'aws-amplify'
+import { API, Auth, graphqlOperation } from 'aws-amplify'
 import { useAuthContext } from 'context/auth'
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { GetUserQuery, User } from 'types/API'
 import * as yup from 'yup'
+import { getUser } from '../../graphql/queries'
 import MyTextField from '../common/my-textfield'
+
 interface SignupFormInputs {
 	firstName: string
 	lastName: string
@@ -74,8 +77,11 @@ export default function Signup() {
 			})
 
 			if (res.userSub) {
-				auth.login(res.user)
-
+				const userQuery = (await API.graphql(
+					graphqlOperation(getUser, { id: res.userSub })
+				)) as { data: GetUserQuery }
+				const user = userQuery.data.getUser as User
+				auth.setUser(user)
 				reset()
 			}
 		} catch (error) {

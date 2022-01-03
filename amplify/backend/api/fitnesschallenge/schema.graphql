@@ -11,7 +11,7 @@ type User @model {
 	firstName: String!
 	lastName: String!
 	email: String!
-	password: String!
+	# password: String!
 	posts: [Post] @hasMany
 	reading: Book
 }

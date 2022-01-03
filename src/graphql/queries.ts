@@ -12,7 +12,6 @@ export const getUser = /* GraphQL */ `
       firstName
       lastName
       email
-      password
       posts {
         items {
           id
@@ -48,7 +47,6 @@ export const listUsers = /* GraphQL */ `
         firstName
         lastName
         email
-        password
         posts {
           nextToken
         }
@@ -76,7 +74,6 @@ export const getPost = /* GraphQL */ `
         firstName
         lastName
         email
-        password
         posts {
           nextToken
         }
@@ -123,7 +120,6 @@ export const listPosts = /* GraphQL */ `
           firstName
           lastName
           email
-          password
           createdAt
           updatedAt
         }
@@ -152,7 +148,6 @@ export const getComment = /* GraphQL */ `
         firstName
         lastName
         email
-        password
         posts {
           nextToken
         }
@@ -189,7 +184,6 @@ export const listComments = /* GraphQL */ `
           firstName
           lastName
           email
-          password
           createdAt
           updatedAt
         }

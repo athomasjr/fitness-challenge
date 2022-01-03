@@ -18,7 +18,11 @@
       "function": {
         "fitnesschallengepostsignup": {
           "deploymentBucketName": "amplify-fitnesschallenge-dev-73715-deployment",
-          "s3Key": "amplify-builds/fitnesschallengepostsignup-46516d67734571615842-build.zip"
+          "s3Key": "amplify-builds/fitnesschallengepostsignup-6f375a69475837747953-build.zip"
+        },
+        "fitnessChallengeConfirmSignUp": {
+          "deploymentBucketName": "amplify-fitnesschallenge-dev-73715-deployment",
+          "s3Key": "amplify-builds/fitnessChallengeConfirmSignUp-67596e7a657274305450-build.zip"
         }
       }
     }

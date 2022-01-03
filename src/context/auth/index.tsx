@@ -1,95 +1,79 @@
-import { CognitoUser } from '@aws-amplify/auth'
-import { Auth } from 'aws-amplify'
+// import { CognitoUser } from '@aws-amplify/auth'
+
 import {
 	createContext,
 	PropsWithChildren,
 	ReactNode,
 	useContext,
-	useEffect,
 	useReducer,
 } from 'react'
-import { useNavigate } from 'react-router-dom'
 import * as AuthTypes from 'types/auth'
+import { User } from '../../types/API'
+import authReducer from './reducer'
 
 const initialState: AuthTypes.IAuthState = {
-	// user: null,
-	userConfig: null,
+	user: null,
+	isAuthenticated: false,
+	isLoading: false,
 }
+
+const storedAuth = localStorage.getItem(AuthTypes.LocalStorage.ISAUTHENTICATED)
+const storedUser = localStorage.getItem(AuthTypes.LocalStorage.USER)
+
+if (storedAuth === 'true' && storedUser && typeof storedUser === 'string') {
+	initialState.isAuthenticated = true
+	initialState.user = JSON.parse(storedUser)
+}
+
+console.log('AuthProvider loaded')
 
 const AuthContext = createContext<AuthTypes.IAuthContext>({
-	userConfig: null,
-	login: (userConfig) => {},
-	logout: () => {},
+	...initialState,
+	setUser: (user) => {},
+	clearUser: () => {},
 })
 
-function authReducer(
-	state: AuthTypes.IAuthState,
-	action: AuthTypes.AUTHACTIONTYPE
-) {
-	switch (action.type) {
-		case 'LOGIN':
-			return {
-				...state,
-				userConfig: action.payload,
-			}
-		case 'LOGOUT':
-			return {
-				...state,
-				userConfig: null,
-			}
-		default:
-			return state
-	}
-}
-
-const AuthProvider = ({
+function AuthProvider({
 	children,
-}: PropsWithChildren<{ children: ReactNode }>) => {
+}: PropsWithChildren<{ children: ReactNode }>) {
 	const [state, dispatch] = useReducer(authReducer, initialState)
-	const navigate = useNavigate()
 
-	useEffect(() => {
-		console.log('AuthState:', state)
-	}, [state])
+	function setUser(user: User) {
+		dispatch({ type: AuthTypes.AUTHACTIONENUM.SENDING_REQUEST })
+		if (user) {
+			dispatch({
+				type: AuthTypes.AUTHACTIONENUM.SET_USER,
+				payload: user,
+			})
 
-	useEffect(() => {
-		checkAuth()
-	}, [])
-
-	function login(userConfig: CognitoUser) {
-		dispatch({
-			type: 'LOGIN',
-			payload: userConfig,
-		})
-		navigate('/')
-	}
-
-	function logout() {
-		dispatch({
-			type: 'LOGOUT',
-		})
-	}
-
-	async function checkAuth() {
-		try {
-			const user = await Auth.currentAuthenticatedUser()
-			if (user) {
-				state.userConfig = user
-				navigate('/')
-			} else {
-				state.userConfig = null
-			}
-		} catch (error) {
-			console.error(error)
+			dispatch({ type: AuthTypes.AUTHACTIONENUM.REQUEST_SUCCESS })
+			localStorage.setItem(AuthTypes.LocalStorage.ISAUTHENTICATED, 'true')
+			localStorage.setItem(AuthTypes.LocalStorage.USER, JSON.stringify(user))
+			console.log('success')
+		} else {
+			dispatch({
+				type: AuthTypes.AUTHACTIONENUM.REQUEST_FAILED,
+			})
+			console.log('failed')
 		}
+	}
+
+	function clearUser() {
+		dispatch({
+			type: AuthTypes.AUTHACTIONENUM.CLEAR_USER,
+		})
+		localStorage.removeItem(AuthTypes.LocalStorage.ISAUTHENTICATED)
+		localStorage.removeItem(AuthTypes.LocalStorage.USER)
 	}
 
 	return (
 		<AuthContext.Provider
 			value={{
-				userConfig: state.userConfig,
-				login,
-				logout,
+				isLoading: state.isLoading,
+				user: state.user,
+				isAuthenticated: state.isAuthenticated,
+				setUser,
+				clearUser,
 			}}
 		>
 			{children}

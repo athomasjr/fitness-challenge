@@ -10,7 +10,6 @@ export type CreateUserInput = {
   firstName: string,
   lastName: string,
   email: string,
-  password: string,
   reading?: BookInput | null,
 };
 
@@ -27,7 +26,6 @@ export type ModelUserConditionInput = {
   firstName?: ModelStringInput | null,
   lastName?: ModelStringInput | null,
   email?: ModelStringInput | null,
-  password?: ModelStringInput | null,
   and?: Array< ModelUserConditionInput | null > | null,
   or?: Array< ModelUserConditionInput | null > | null,
   not?: ModelUserConditionInput | null,
@@ -82,7 +80,6 @@ export type User = {
   firstName: string,
   lastName: string,
   email: string,
-  password: string,
   posts?: ModelPostConnection | null,
   reading?: Book | null,
   createdAt: string,
@@ -138,7 +135,6 @@ export type UpdateUserInput = {
   firstName?: string | null,
   lastName?: string | null,
   email?: string | null,
-  password?: string | null,
   reading?: BookInput | null,
 };
 
@@ -221,7 +217,6 @@ export type ModelUserFilterInput = {
   firstName?: ModelStringInput | null,
   lastName?: ModelStringInput | null,
   email?: ModelStringInput | null,
-  password?: ModelStringInput | null,
   and?: Array< ModelUserFilterInput | null > | null,
   or?: Array< ModelUserFilterInput | null > | null,
   not?: ModelUserFilterInput | null,
@@ -267,7 +262,6 @@ export type CreateUserMutation = {
     firstName: string,
     lastName: string,
     email: string,
-    password: string,
     posts?:  {
       __typename: "ModelPostConnection",
       items:  Array< {
@@ -306,7 +300,6 @@ export type UpdateUserMutation = {
     firstName: string,
     lastName: string,
     email: string,
-    password: string,
     posts?:  {
       __typename: "ModelPostConnection",
       items:  Array< {
@@ -345,7 +338,6 @@ export type DeleteUserMutation = {
     firstName: string,
     lastName: string,
     email: string,
-    password: string,
     posts?:  {
       __typename: "ModelPostConnection",
       items:  Array< {
@@ -387,7 +379,6 @@ export type CreatePostMutation = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -439,7 +430,6 @@ export type UpdatePostMutation = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -491,7 +481,6 @@ export type DeletePostMutation = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -544,7 +533,6 @@ export type CreateCommentMutation = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -584,7 +572,6 @@ export type UpdateCommentMutation = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -624,7 +611,6 @@ export type DeleteCommentMutation = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -659,7 +645,6 @@ export type GetUserQuery = {
     firstName: string,
     lastName: string,
     email: string,
-    password: string,
     posts?:  {
       __typename: "ModelPostConnection",
       items:  Array< {
@@ -701,7 +686,6 @@ export type ListUsersQuery = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -736,7 +720,6 @@ export type GetPostQuery = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -791,7 +774,6 @@ export type ListPostsQuery = {
         firstName: string,
         lastName: string,
         email: string,
-        password: string,
         createdAt: string,
         updatedAt: string,
       },
@@ -826,7 +808,6 @@ export type GetCommentQuery = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -869,7 +850,6 @@ export type ListCommentsQuery = {
         firstName: string,
         lastName: string,
         email: string,
-        password: string,
         createdAt: string,
         updatedAt: string,
       },
@@ -892,7 +872,6 @@ export type OnCreateUserSubscription = {
     firstName: string,
     lastName: string,
     email: string,
-    password: string,
     posts?:  {
       __typename: "ModelPostConnection",
       items:  Array< {
@@ -926,7 +905,6 @@ export type OnUpdateUserSubscription = {
     firstName: string,
     lastName: string,
     email: string,
-    password: string,
     posts?:  {
       __typename: "ModelPostConnection",
       items:  Array< {
@@ -960,7 +938,6 @@ export type OnDeleteUserSubscription = {
     firstName: string,
     lastName: string,
     email: string,
-    password: string,
     posts?:  {
       __typename: "ModelPostConnection",
       items:  Array< {
@@ -997,7 +974,6 @@ export type OnCreatePostSubscription = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -1044,7 +1020,6 @@ export type OnUpdatePostSubscription = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -1091,7 +1066,6 @@ export type OnDeletePostSubscription = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -1139,7 +1113,6 @@ export type OnCreateCommentSubscription = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -1174,7 +1147,6 @@ export type OnUpdateCommentSubscription = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,
@@ -1209,7 +1181,6 @@ export type OnDeleteCommentSubscription = {
       firstName: string,
       lastName: string,
       email: string,
-      password: string,
       posts?:  {
         __typename: "ModelPostConnection",
         nextToken?: string | null,

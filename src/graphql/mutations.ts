@@ -15,7 +15,6 @@ export const createUser = /* GraphQL */ `
       firstName
       lastName
       email
-      password
       posts {
         items {
           id
@@ -49,7 +48,6 @@ export const updateUser = /* GraphQL */ `
       firstName
       lastName
       email
-      password
       posts {
         items {
           id
@@ -83,7 +81,6 @@ export const deleteUser = /* GraphQL */ `
       firstName
       lastName
       email
-      password
       posts {
         items {
           id
@@ -119,7 +116,6 @@ export const createPost = /* GraphQL */ `
         firstName
         lastName
         email
-        password
         posts {
           nextToken
         }
@@ -164,7 +160,6 @@ export const updatePost = /* GraphQL */ `
         firstName
         lastName
         email
-        password
         posts {
           nextToken
         }
@@ -209,7 +204,6 @@ export const deletePost = /* GraphQL */ `
         firstName
         lastName
         email
-        password
         posts {
           nextToken
         }
@@ -255,7 +249,6 @@ export const createComment = /* GraphQL */ `
         firstName
         lastName
         email
-        password
         posts {
           nextToken
         }
@@ -290,7 +283,6 @@ export const updateComment = /* GraphQL */ `
         firstName
         lastName
         email
-        password
         posts {
           nextToken
         }
@@ -325,7 +317,6 @@ export const deleteComment = /* GraphQL */ `
         firstName
         lastName
         email
-        password
         posts {
           nextToken
         }
